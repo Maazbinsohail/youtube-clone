@@ -1,23 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
-
+import AddVideo from './components/addvideo/AddVideo';
+import PlayButton from './components/playbutton/PlayButton';
+import Video from './components/video/Video';
+import videos from './data/Data';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="App" onClick={()=>console.log('App')}>
+      <AddVideo />
+      {videos.map((video) => (
+        <Video
+          key={video.id}
+          title={video.title}
+          views={video.views}
+          time={video.time}
+          channel={video.channel}
+          verified={video.verified}
+          id={video.id}
         >
-          Learn React
-        </a>
-      </header>
+          <PlayButton
+            onPlay={() => console.log('Playing..',video.title)}
+            onPause={() => console.log('Paused..',video.title)}
+          >
+            {video.title}
+          </PlayButton>
+        </Video>
+      ))}
+
+      <div style={{ clear: 'both' }}>
+        {/* <PlayButton message="play-msg" onPlay={()=>console.log('Play')} onPause={()=>console.log('Pause')}>Play</PlayButton> */}
+
+        {/* <PlayButton message="pause-msg" onSmash={()=>alert('Playyy')}>Pause</PlayButton> */}
+      </div>
     </div>
   );
 }
