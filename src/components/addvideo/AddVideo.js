@@ -13,7 +13,7 @@ function AddVideo({addvideos,updateVideo, editableVideo}) {
   const [video, setVideo] = useState(initialState)
   const handleSubmit = (e) => {
     e.preventDefault()
-    if(!editableVideo) {
+    if(editableVideo) {
       updateVideo(video)
     } else {
       addvideos(video)
