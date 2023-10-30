@@ -9,14 +9,16 @@ const initialState = {
     channel: 'Mk Bros',
     verified: true
   }
-function AddVideo({addvideos,updateVideo, editableVideo}) {
+function AddVideo({dispatch, editableVideo}) {
   const [video, setVideo] = useState(initialState)
   const handleSubmit = (e) => {
     e.preventDefault()
     if(editableVideo) {
-      updateVideo(video)
+      dispatch({type: 'UPDATE', payload: video})
+
     } else {
-      addvideos(video)
+      dispatch({type: 'ADD', payload: video})
+
     }
     
     setVideo(initialState)  

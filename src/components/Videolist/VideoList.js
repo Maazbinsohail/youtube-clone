@@ -1,7 +1,7 @@
 import React from 'react'
 import Video from '../video/Video'
 import PlayButton from '../playbutton/PlayButton'
-function VideoList({videos,deleteVideo,editVideo}){
+function VideoList({videos,dispatch,editVideo}){
 
     return(
         <>
@@ -14,8 +14,8 @@ function VideoList({videos,deleteVideo,editVideo}){
               channel={video.channel}
               verified={video.verified}
               id={video.id}
-              deleteVideo={deleteVideo}
               editVideo={editVideo}
+              dispatch={dispatch}
             >
               <PlayButton
                 onPlay={() => console.log('Playing..',video.title)}

@@ -26,34 +26,16 @@ function videoReducer(videos,action){ //video is mai state ko represent kr rh ha
   
   const [videos, dispatch] = useReducer(videoReducer, videoDB)
 
-  function addVideos(video){
-    dispatch({type: 'ADD', payload: video})
-
-  }
-
-  function deleteVideo(id){
-    dispatch({type: 'DELETE', payload: id})
-    // setVideos(videos.filter((video) => video.id !== id))
-   console.log(id)
-  }
-
   function editVideo(id){
       
     setEditableVideo(videos.find(video => video.id === id))
 
   }   
 
-
-  function updateVideo(video){
-    dispatch({type: 'UPDATE', payload: video})
-    // setVideos(newVideos)
-  }
-   
-
   return (
     <div className="App" onClick={()=>console.log('App')}>
-      <AddVideo addvideos={addVideos} updateVideo={updateVideo} editableVideo={editableVideo} />
-      <VideoList  deleteVideo={deleteVideo} editVideo={editVideo} videos={videos}/>
+      <AddVideo dispatch={dispatch}  editableVideo={editableVideo} />
+      <VideoList  dispatch={dispatch} editVideo={editVideo} videos={videos}/>
       </div>
   );
 }
