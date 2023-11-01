@@ -1,13 +1,24 @@
 button{
-    background-color: black;
-    border: 1px solid yellow;
+    
     padding: 1em;
     border-radius: 1em;
-    color: white;
     cursor: pointer;
     
 }
 button:hover{
     background-color: grey;
     color: white;
+}
+
+/*button.darkMode mtlb k jaise main buttom ki class py lga rhy hongye,  .darkmode button means ushe container
+ k child component ki class py lga rhy hongye */
+button.darkMode, .darkmode button{ 
+    background-color: black;
+    border: 1px solid yellow;
+    color: white;
+}
+button.lightkMode, .lightkMode button{
+    background-color: #ccc;
+    border: 1px solid black;
+    color: black;
 }
