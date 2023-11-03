@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import './Addvideo.css'
+import VideoDispatch from '../../context/VideoDispatch'
 
 
 const initialState = {
@@ -9,8 +10,9 @@ const initialState = {
     channel: 'Mk Bros',
     verified: true
   }
-function AddVideo({dispatch, editableVideo}) {
+function AddVideo({ editableVideo}) {
   const [video, setVideo] = useState(initialState)
+  const dispatch = useContext(VideoDispatch)
   const handleSubmit = (e) => {
     e.preventDefault()
     if(editableVideo) {

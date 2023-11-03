@@ -1,6 +1,6 @@
 .dark{
     background-color: gray;
-    color:white;
+    color: white;
     
 }
 
@@ -24,9 +24,14 @@
     margin-bottom: 1em;
    
   }
-  .channel, .views{
+  .darkMode .channel, .darkMode .views{
     font-size: small;
-    color:#ccc;
+    color: white;
+    margin-bottom: 0.2em;
+  }
+  .lightMode .channel, .lightMode .views{
+    font-size: small;
+    color:black;
     margin-bottom: 0.2em;
   }
   
@@ -42,6 +47,3 @@
     right: 4em;
   }
 
-  .channel,.views, .container.lightMode {
-    color: black;
-  }

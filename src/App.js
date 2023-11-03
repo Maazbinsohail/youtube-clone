@@ -2,13 +2,13 @@ import './App.css';
 import VideoList from './components/Videolist/VideoList';
 import AddVideo from './components/addvideo/AddVideo';
 import ThemeContext from './context/ThemeContext';
+import VideoContext from './context/VideoContext';
+import VideoDispatch from './context/VideoDispatch';
 import videoDB from './data/Data';
 import { useReducer, useState } from 'react';
-
 function App() {
   const [editableVideo, setEditableVideo] = useState(null)     
   const [mode, setMode] = useState('darkMode')
-
   function videoReducer(videos,action){ //video is mai state ko represent kr rh hai hai
   switch (action.type) {
   case 'ADD':
@@ -27,24 +27,21 @@ function App() {
   }
   }
   const [videos, dispatch] = useReducer(videoReducer, videoDB)
-
   function editVideo(id){   
     setEditableVideo(videos.find(video => video.id === id))
   }  
-  
-  
-
   return (
-   
-    <ThemeContext.Provider value={mode}>
-     
-    <div className={`App ${mode}`} onClick={()=>console.log('App')}>
- <button onClick={()=>setMode(mode === 'darkMode' ? 'lightMode' : 'darkMode')}>Toggle Mode</button> 
-      <AddVideo dispatch={dispatch}  editableVideo={editableVideo} />
-      <VideoList  dispatch={dispatch} editVideo={editVideo} videos={videos}/>
+      <ThemeContext.Provider value={mode}>
+      <VideoContext.Provider value={videos}>
+      <VideoDispatch.Provider value={dispatch}>
+      <div className={`App ${mode}`} onClick={()=>console.log('App')}>
+      <button onClick={()=>setMode(mode === 'darkMode' ? 'lightMode' : 'darkMode')}>Toggle Mode</button> 
+      <AddVideo   editableVideo={editableVideo} />
+      <VideoList  editVideo={editVideo} />
       </div>
+      </VideoDispatch.Provider>
+      </VideoContext.Provider>
       </ThemeContext.Provider>
   );
   }
-
 export default App; 
