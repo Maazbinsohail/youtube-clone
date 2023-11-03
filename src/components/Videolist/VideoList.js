@@ -1,9 +1,9 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import Video from '../video/Video'
 import PlayButton from '../playbutton/PlayButton'
-import VideoContext from '../../context/VideoContext'
+import useVideos from '../../customhooks/Videos'
 function VideoList({editVideo}){
-const videos = useContext(VideoContext)
+const videos = useVideos()
     return(
         <>
         {videos.map((video) => (

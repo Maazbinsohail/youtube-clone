@@ -1,11 +1,11 @@
 import { useContext } from 'react';
 import './Video.css';
 import ThemeContext from '../../context/ThemeContext';
-import VideoDispatch from '../../context/VideoDispatch';
+import useDispatch from '../../customhooks/VideoDispatch';
 
 function Video({ title, id, channel = 'Coder Dost', views, time, verified, children,  editVideo }) {
   const theme = useContext(ThemeContext);
-  const dispatch = useContext(VideoDispatch);
+  const dispatch = useDispatch();
 
   return (
     <div className={`container ${theme}`}>
