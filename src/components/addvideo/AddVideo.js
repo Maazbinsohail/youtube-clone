@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import './Addvideo.css'
 
 import useDispatch from '../../customhooks/VideoDispatch'
@@ -15,6 +15,7 @@ const initialState = {
 function AddVideo({ editableVideo}) {
   const [video, setVideo] = useState(initialState)
  const dispatch = useDispatch()
+ const inputRef = useRef(null)
   const handleSubmit = (e) => {
     e.preventDefault()
     if(editableVideo) {
@@ -38,12 +39,13 @@ function AddVideo({ editableVideo}) {
     if(editableVideo) {
       setVideo(editableVideo)
     }
+    inputRef.current.focus()    
    
  }, [editableVideo])
-  return (
+  return ( // input mai jo refprop use houa hai usko bind kia hai jo useref mai variable hai ussy
     <div>
       <form>
-      <input type="text" name='title' onChange={handleChange}  placeholder='title' value={video.title}/>
+      <input ref={inputRef}  type="text" name='title' onChange={handleChange}  placeholder='title' value={video.title}/>  
       <input type="text"  name='views' onChange={handleChange}  placeholder='views' value={video.views}/>
       <button onClick={handleSubmit}>
       {editableVideo ? 'Edit' : 'Add'} Video
