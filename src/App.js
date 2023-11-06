@@ -4,13 +4,15 @@ import AddVideo from './components/addvideo/AddVideo';
 import ThemeContext from './context/ThemeContext';
 import VideoContext from './context/VideoContext';
 import VideoDispatch from './context/VideoDispatch';
-import videoDB from './data/Data';
+
 import { useReducer, useState } from 'react';
 function App() {
   const [editableVideo, setEditableVideo] = useState(null)     
   const [mode, setMode] = useState('darkMode')
   function videoReducer(videos,action){ //video is mai state ko represent kr rh hai hai
   switch (action.type) {
+    case 'LOAD':
+      return action.payload;
   case 'ADD':
     return[...videos,
       {...action.payload,id : videos.length + 1} ]
@@ -26,7 +28,7 @@ function App() {
     return videos
   }
   }
-  const [videos, dispatch] = useReducer(videoReducer, videoDB)
+  const [videos, dispatch] = useReducer(videoReducer, [])
   function editVideo(id){   
     setEditableVideo(videos.find(video => video.id === id))
   }  
