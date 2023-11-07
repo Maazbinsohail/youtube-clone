@@ -1,12 +1,12 @@
-import { useContext, useEffect } from "react";
+import { useContext, memo } from "react";
 import "./Video.css";
 import ThemeContext from "../../context/ThemeContext";
 import useDispatch from "../../customhooks/VideoDispatch";
 
-function Video({
+const Video = memo (function Video({
   title,
   id,
-  channel = "Coder Dost",
+  channel = "MKZ",
   views,
   time,
   verified,
@@ -15,10 +15,7 @@ function Video({
 }) {
   const theme = useContext(ThemeContext);
   const dispatch = useDispatch();
-          useEffect(() => {
-
-            
-          });
+      
   return (
     <div className={`container ${theme}`}>
       <button
@@ -46,6 +43,6 @@ function Video({
       <div>{children}</div>
     </div>
   );
-}
+})
 
 export default Video;

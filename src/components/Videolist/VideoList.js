@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import Video from '../video/Video'
 import PlayButton from '../playbutton/PlayButton'
 import useVideos from '../../customhooks/Videos'
@@ -27,7 +27,10 @@ const dispatch = useDispatch()
    }
    getVideos()
 
- },[])
+ },[dispatch])
+
+ const play = useCallback (() => console.log('Playing..',videos.title),[ videos.title])
+ const pause = useCallback (() => console.log('Paused..',videos.title),[ videos.title]) 
 
     return(
         <>
@@ -44,8 +47,8 @@ const dispatch = useDispatch()
               
             >
               <PlayButton
-                onPlay={() => console.log('Playing..',video.title)}
-                onPause={() => console.log('Paused..',video.title)}
+                onPlay={play}
+                onPause={pause}
               >
                 {video.title}
               </PlayButton>

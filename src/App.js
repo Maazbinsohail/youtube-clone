@@ -5,7 +5,7 @@ import ThemeContext from './context/ThemeContext';
 import VideoContext from './context/VideoContext';
 import VideoDispatch from './context/VideoDispatch';
 
-import { useReducer, useState } from 'react';
+import { useCallback, useReducer, useState } from 'react';
 function App() {
   const [editableVideo, setEditableVideo] = useState(null)     
   const [mode, setMode] = useState('darkMode')
@@ -29,9 +29,11 @@ function App() {
   }
   }
   const [videos, dispatch] = useReducer(videoReducer, [])
-  function editVideo(id){   
-    setEditableVideo(videos.find(video => video.id === id))
-  }  
+
+ const editVideo = useCallback(  function editVideo(id){   
+  setEditableVideo(videos.find(video => video.id === id))
+}, [videos]) 
+ 
   return (
       <ThemeContext.Provider value={mode}>
       <VideoContext.Provider value={videos}>
